@@ -33,7 +33,7 @@ import soundY from './assets/sounds/Piano.pp.Bb4.wav'
 import soundZ from './assets/sounds/Piano.pp.Bb5.wav'
 import NavBar from './essentials/NavBar'
 
-function App() {
+function Contact() {
   const [sound, setSound] = useState(-1)
 
   const keySounds: Record<string, string> = {
@@ -89,37 +89,12 @@ function App() {
 
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar />
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <p> my email : lkshmgrj@gmail.com </p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p> This website is better with sound on </p>
-        <br></br>
-        <button
-          onClick={() => setSound((prev) => prev * -1)}
-        >
-          {sound === 1 ? (
-            <img src={soundLogo} alt="Sound on" width={40} height={40} />
-          ) : (
-            <img src={muteLogo} alt="Sound off" width={40} height={40} />
-          )}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
 
-export default App
+export default Contact

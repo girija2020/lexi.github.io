@@ -1,0 +1,28 @@
+.navbar {
+  width: 100vw;               /* force full viewport width */
+  background-color: purple;   /* purple bar */
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;    /* keep links in the middle */
+  gap: 3rem;                  /* spacing between links */
+  position: fixed;            /* stick at top */
+  top: 0;
+  left: 0;
+  z-index: 1000;              /* stay above other content */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffccff; /* lighter purple hover */
+}
+
+.nav-link.active {
+  border-bottom: 2px solid white;
+}
