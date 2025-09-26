@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter } from "react-router-dom";
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import soundLogo from './assets/soundon.jpeg'
@@ -31,7 +30,6 @@ import soundW from './assets/sounds/Piano.pp.Bb2.wav'
 import soundX from './assets/sounds/Piano.pp.Bb3.wav'
 import soundY from './assets/sounds/Piano.pp.Bb4.wav'
 import soundZ from './assets/sounds/Piano.pp.Bb5.wav'
-import NavBar from './essentials/NavBar'
 
 function App() {
   const [sound, setSound] = useState(-1)
