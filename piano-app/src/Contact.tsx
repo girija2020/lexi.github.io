@@ -1,100 +1,88 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter } from "react-router-dom";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import soundLogo from './assets/soundon.jpeg'
-import muteLogo from './assets/OIP.jpeg'
-import './App.css'
-import soundA from './assets/sounds/Piano.pp.A1.wav'
-import soundB from './assets/sounds/Piano.pp.A2.wav'
-import soundC from './assets/sounds/Piano.pp.A3.wav'
-import soundD from './assets/sounds/Piano.pp.A4.wav'
-import soundE from './assets/sounds/Piano.pp.A5.wav'
-import soundF from './assets/sounds/Piano.pp.A6.wav'
-import soundG from './assets/sounds/Piano.pp.A7.wav'
-import soundH from './assets/sounds/Piano.pp.Ab1.wav'
-import soundI from './assets/sounds/Piano.pp.Ab2.wav'
-import soundJ from './assets/sounds/Piano.pp.Ab3.wav'
-import soundK from './assets/sounds/Piano.pp.Ab4.wav'
-import soundL from './assets/sounds/Piano.pp.Ab5.wav'
-import soundM from './assets/sounds/Piano.pp.Ab6.wav'
-import soundN from './assets/sounds/Piano.pp.Ab7.wav'
-import soundO from './assets/sounds/Piano.pp.B0.wav'
-import soundP from './assets/sounds/Piano.pp.B2.wav'
-import soundQ from './assets/sounds/Piano.pp.B3.wav'
-import soundR from './assets/sounds/Piano.pp.B4.wav'
-import soundS from './assets/sounds/Piano.pp.B5.wav'
-import soundT from './assets/sounds/Piano.pp.B6.wav'
-import soundU from './assets/sounds/Piano.pp.B7.wav'
-import soundV from './assets/sounds/Piano.pp.Bb0.wav'
-import soundW from './assets/sounds/Piano.pp.Bb2.wav'
-import soundX from './assets/sounds/Piano.pp.Bb3.wav'
-import soundY from './assets/sounds/Piano.pp.Bb4.wav'
-import soundZ from './assets/sounds/Piano.pp.Bb5.wav'
-import NavBar from './essentials/NavBar'
+import React, { useEffect, useState } from "react";
+import "./essentials/Contact.css";
+import "./essentials/NavBar.css"
 
-function Contact() {
-  const [sound, setSound] = useState(-1)
+const CONTACT_FIELDS = [
+  { label: "Personal Email", value: "Lkshmgrj@gmail.com" },
+  { label: "Phone", value: "+1 (508) 454-7831" },
+  { label: "University Email", value: "dlgirija@bu.edu" },
+  { label: "Location", value: "Boston, USA" },
+];
 
-  const keySounds: Record<string, string> = {
-    a: soundA,
-    b: soundB,
-    c: soundC,
-    d: soundD,
-    e: soundE,
-    f: soundF,
-    g: soundG,
-    h: soundH,
-    i: soundI,
-    j: soundJ,
-    k: soundK,
-    l: soundL,
-    m: soundM,
-    n: soundN,
-    o: soundO,
-    p: soundP,
-    q: soundQ,
-    r: soundR,
-    s: soundS,
-    t: soundT,
-    u: soundU,
-    v: soundV,
-    w: soundW,
-    x: soundX,
-    y: soundY,
-    z: soundZ
-  }
+const NUM_WORDS = 28; // how many "lexi" words around the circle
 
+const Contact: React.FC = () => {
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // trigger animation of fields once mounted
+    const t = setTimeout(() => setMounted(true), 80);
+    return () => clearTimeout(t);
+  }, []);
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-    if (sound == -1) return;
-
-    const key = e.key.toLowerCase();
-
-    if (key in keySounds) {
-      const audio = new Audio(keySounds[key]);
-
-      // restart if already playing
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    }
-  };
-
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [sound]);
+  const words = Array.from({ length: NUM_WORDS }).map((_, i) => ({
+    id: i,
+    text: "yayy",
+  }));
 
   return (
-    <>
-      <NavBar />
-      <div>
-        <p> my email : lkshmgrj@gmail.com </p>
-      </div>
-    </>
-  )
-}
+    <div className="contact-page">
+      <div className="circle-stage">
+        {/* rotating ring of words */}
+        <div className="words-ring" aria-hidden>
+        {words.map((w, i) => {
+        const angle = (360 / NUM_WORDS) * i;
+        // Center word at the ring center, rotate to angle, move outward by --ring-radius,
+        // then rotate back so the text is upright.
+        const transform = `translate(-50%,-50%) rotate(${angle}deg) translateY(calc(-1 * var(--ring-radius))) rotate(-${angle}deg)`;
+        return (
+            <div
+            key={w.id}
+            className="ring-word"
+            style={{
+                transform,
+                animationDelay: `${(i % 4) * 0.12}s`,
+                // debug helpers you can remove later:
+                // outline: "1px solid rgba(255,255,255,0.15)"
+            }}
+            data-i={i}
+            >
+            {w.text}
+            </div>
+        );
+        })}
 
-export default Contact
+        </div>
+
+        {/* center card inside the ring */}
+        <div className="contact-card" role="region" aria-label="Contact information">
+          <h2 className="card-title">Get in touch</h2>
+
+          <div className="fields">
+            {CONTACT_FIELDS.map((f, i) => (
+              <div
+                key={f.label}
+                className={`field ${mounted ? "in" : ""}`}
+                style={{ animationDelay: `${0.12 * i}s` }}
+              >
+                <div className="field-label">{f.label}</div>
+                <div className="field-value">{f.value}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="cta-row">
+            <a className="btn" href={`mailto:${CONTACT_FIELDS[0].value}`}>
+              Email me
+            </a>
+            <a className="btn ghost" href={`mailto:${CONTACT_FIELDS[2].value}`}>
+              University Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;

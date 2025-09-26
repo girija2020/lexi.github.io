@@ -5,11 +5,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
 import Contact from "./Contact.tsx";
+import NavBar from "./essentials/NavBar.tsx"
+
 // import About from "./About.tsx"; // optional
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
+      <NavBar></NavBar>
       <Routes>
         <Route path="/" element={<App />} />
         {/* <Route path="/about" element={<About />} /> */}
