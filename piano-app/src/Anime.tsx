@@ -1,4 +1,3 @@
-import React from "react";
 import karasuno from "./assets/karasuno.jpg";
 import ruri from "./assets/ruri.webp";
 import iruma from "./assets/iruma.webp";
