@@ -1,0 +1,73 @@
+/* ChatbotCss.module.css */
+.wrapper {
+  margin: 24px auto;
+  max-width: 360px; /* small width */
+  font-size: 14px;
+}
+
+.card {
+  background: rgba(189, 85, 249, 0.95);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border: 1px solid #e6e6e6;
+  position: unset;
+}
+
+.header h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.messages {
+  height: 200px; /* smaller height */
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #f0f0f0;
+  margin-bottom: 10px;
+  background: #fff;
+}
+
+.empty {
+  color: #888;
+  font-size: 13px;
+}
+
+.userMsg {
+  color: #1e6fff;
+  margin-bottom: 8px;
+}
+
+.botMsg {
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.role {
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.inputRow {
+  display: flex;
+  gap: 8px;
+}
+
+.input {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #1e6fff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}

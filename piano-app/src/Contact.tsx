@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
 
   const words = Array.from({ length: NUM_WORDS }).map((_, i) => ({
     id: i,
-    text: "yayy",
+    text: "",
   }));
 
   return (
