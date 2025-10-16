@@ -7,8 +7,13 @@ import Contact from "./Contact.tsx";
 import NavBar from "./essentials/NavBar.tsx";
 import Anime from "./Anime.tsx";
 import Chatbot from "./essentials/Chatbot.tsx";
+import Timeline from "./essentials/Timeline.tsx";
 
 // import About from "./About.tsx"; // optional
+const events = [
+  { id: 1, date: "2001", title: "Born" },
+  { id: 2, date: "2016", title: "First Code", description: "Wrote"},
+];
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -19,12 +24,11 @@ createRoot(document.getElementById("root")!).render(
       {/* Routes */}
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/chat" element={<Chatbot />} />
         <Route path="/anime" element={<Anime />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/time" element={<Timeline events={events}/>} />
       </Routes>
-
-      {/* Floating Chatbot at the corner */}
-      <Chatbot />
     </BrowserRouter>
   </StrictMode>
 );

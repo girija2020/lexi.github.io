@@ -88,6 +88,12 @@ const Navbar = () => {
       <NavLink to="/" end className="nav-link">
         Home
       </NavLink>
+      <NavLink to="/chat" end className="nav-link">
+        Chat
+      </NavLink>
+      <NavLink to="/time" end className="nav-link">
+        TimeLine
+      </NavLink>
       <NavLink to="/anime" className="nav-link">
         Anime
       </NavLink>

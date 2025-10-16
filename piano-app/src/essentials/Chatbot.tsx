@@ -46,14 +46,14 @@ const ChatbotCss: React.FC = () => {
         </div>
 
         <div className={styles.messages}>
-          {messages.length === 0 && <div className={styles.empty}>Say hi 👋</div>}
+          {messages.length === 0 && <div className={styles.empty}>Ask anything about Lakshmi Girija Dhulipati(me) Loll programmed to give only good about me though</div>}
           {messages.map((m, i) => (
             <div
               key={i}
               className={m.role === "user" ? styles.userMsg : styles.botMsg}
             >
               <strong className={styles.role}>
-                {m.role === "user" ? "You:" : "Bot:"}
+                {m.role === "user" ? "You:" : "Lakshmi's AI asst:"}
               </strong>{" "}
               {m.content}
             </div>

@@ -1,7 +1,7 @@
 /* ChatbotCss.module.css */
 .wrapper {
   margin: 24px auto;
-  max-width: 360px; /* small width */
+  max-width: 1200px; /* small width */
   font-size: 14px;
 }
 
@@ -20,7 +20,8 @@
 }
 
 .messages {
-  height: 200px; /* smaller height */
+  height: 400px; /* smaller height */
+  width: 1080px;
   overflow-y: auto;
   border-radius: 8px;
   padding: 8px;

@@ -1,6 +1,6 @@
 .navbar {
   width: 100vw;               /* force full viewport width */
-  background-color: purple;   /* purple bar */
+  background-color: rgba(189, 85, 249, 0.95);   /* purple bar */
   padding: 1rem 2rem;
   display: flex;
   justify-content: center;    /* keep links in the middle */
