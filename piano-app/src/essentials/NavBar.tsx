@@ -91,6 +91,9 @@ const Navbar = () => {
       <NavLink to="/chat" end className="nav-link">
         Chat
       </NavLink>
+      <NavLink to="/recommend" end className="nav-link">
+        Wowzer
+      </NavLink>
       <NavLink to="/time" end className="nav-link">
         TimeLine
       </NavLink>

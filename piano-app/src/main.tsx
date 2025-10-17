@@ -8,6 +8,7 @@ import NavBar from "./essentials/NavBar.tsx";
 import Anime from "./Anime.tsx";
 import Chatbot from "./essentials/Chatbot.tsx";
 import Timeline from "./essentials/Timeline.tsx";
+import Recommend from "./Recommend.tsx";
 
 // import About from "./About.tsx"; // optional
 const events = [
@@ -27,7 +28,8 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/chat" element={<Chatbot />} />
         <Route path="/anime" element={<Anime />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/time" element={<Timeline events={events}/>} />
+        <Route path="/time" element={<Timeline/>} />
+        <Route path="/recommend" element={<Recommend/>} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
