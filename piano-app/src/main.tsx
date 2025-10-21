@@ -9,18 +9,14 @@ import Anime from "./Anime.tsx";
 import Chatbot from "./essentials/Chatbot.tsx";
 import Timeline from "./essentials/Timeline.tsx";
 import Recommend from "./Recommend.tsx";
-
-// import About from "./About.tsx"; // optional
-const events = [
-  { id: 1, date: "2001", title: "Born" },
-  { id: 2, date: "2016", title: "First Code", description: "Wrote"},
-];
+import Footer from "./essentials/Footer.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       {/* Navbar always visible */}
       <NavBar />
+      <Footer />
 
       {/* Routes */}
       <Routes>

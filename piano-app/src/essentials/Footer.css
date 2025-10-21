@@ -1,0 +1,64 @@
+.floating-footer {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;             /* distance from bottom */
+  z-index: 9999;
+  pointer-events: none;     /* let clicks pass through outside inner area */
+}
+
+.floating-footer__inner {
+  pointer-events: auto;     /* enable interaction on the pill itself */
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);    /* semi-transparent */
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;               /* pill shape */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);         /* soft blur behind */
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* text */
+.floating-footer__text { opacity: 0.95; }
+
+/* links */
+.floating-footer__links { display: inline-flex; gap: 8px; align-items: center; }
+.floating-footer__link {
+  color: #cfeecf;
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background .12s ease, color .12s ease, transform .08s ease;
+  font-weight: 600;
+}
+.floating-footer__link:hover,
+.floating-footer__link:focus {
+  background: rgba(255,255,255,0.04);
+  color: #ffffff;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* accessible focus ring */
+.floating-footer__link:focus-visible {
+  box-shadow: 0 0 0 4px rgba(124,252,0,0.10);
+}
+
+/* mobile adjustments */
+@media (max-width: 520px) {
+  .floating-footer {
+    bottom: 12px;
+  }
+  .floating-footer__inner {
+    padding: 6px 10px;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .floating-footer__links { gap: 6px; }
+  .floating-footer__text { display: none; } /* hide text on very small screens to save space */
+}

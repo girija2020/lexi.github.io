@@ -28,6 +28,19 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url('./assets/collage.png');
+  background-size: 150px 150px; /* smaller = more tiles, adjust as needed */
+
+  /* ↓ Slight transparency effect */
+  /* Since background-image itself can't be transparent, we blend with color */
+  background-color: rgba(0, 0, 0, 0.6); /* base color with alpha */
+  background-blend-mode:overlay; /* or 'multiply', 'soft-light', etc.*/
+
+  /* Optional extras */
+  background-position: top left;
+  background-attachment: fixed; /* makes it stay in place while scrolling */
+  margin: 0;
+  padding: 0;
 }
 
 h1 {

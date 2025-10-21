@@ -13,7 +13,7 @@ const items: TimelineItem[] = [
 { date: 'Sept 2023', title: 'Placements', description: 'Nans = Google, Sathvika = StartUp, Rups = Flipkart, Brunda = Atlassian' },
 { date: 'Sept 2024', title: 'Boston University', description: 'Hoping Artificial Intelligence has the same impact it had on me' },
 { date: 'Sept 2024', title: 'Guenther Lab', description: 'Neuroscience research - Did you know I love working here' },
-{ date: 'Sept 2025', title: 'Perpetual Job Search', description: 'One cold mail at a time, one application at a time. Did I mention I\'m on OPT. Ohh yeah you are rejected. Jokes aside I love the country for what it did provide me with.' },
+{ date: 'Sept 2025', title: 'Perpetual Job Search', description: 'One cold mail at a time, one application at a time. I\'d love to connect regardless of if you are hiring' },
 
 ];
 export default function Timeline() {

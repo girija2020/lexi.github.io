@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Review from './essentials/Review'; // adjust if your file is named timeline.tsx
 import type { ReviewItem } from './essentials/Review';
 import './Rating.css';
-import { Alert } from "react-bootstrap";
 // import axios from "axios";
 // const STORAGE_KEY = 'myapp.reviews.v1';
 const uid = (p = 'r') => `${p}-${Math.random().toString(36).slice(2, 9)}`;
@@ -107,7 +106,7 @@ function ReviewForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ backgroundColor: "grey", padding: "1rem", borderRadius: "5px" }}>
+    <form onSubmit={handleSubmit} style={{ backgroundColor: "grey", padding: "1rem", borderRadius: "5px" , width: "450px", margin: "0 auto"} }>
       <br></br>
       <br></br>
       <h2>Leave a recommendation</h2>
