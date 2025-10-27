@@ -29,6 +29,7 @@
   border: 1px solid rgba(0,0,0,0.06);
   background: rgb(4, 4, 4);
   cursor: pointer;
+  color: aquamarine;
 }
 
 .canvas-wrap {
@@ -44,7 +45,7 @@
   /* border: 2px solid rgba(255,255,255,0.12);   light rim on dark bg */
   box-sizing: border-box;
   box-shadow:
-    0 18px 40px rgba(255, 255, 255, 0.65),            /* outer shadow for depth */
+    /* 0 18px 40px rgba(255, 255, 255, 0.65),            outer shadow for depth */
     0 2px 6px rgba(255, 255, 255, 0.45);              /* subtle inner depth */
   position: relative;
 }
@@ -74,6 +75,7 @@
   flex-direction: column;
   gap: 6px;
   align-items: center;
+  color: aquamarine;
 }
 
 .dpad button {
@@ -83,6 +85,7 @@
   border: 1px solid rgba(0,0,0,0.06);
   background: rgba(4, 4, 4, 0.92);
   font-weight: 700;
+  color: azure;
 }
 
 .dpad-row {

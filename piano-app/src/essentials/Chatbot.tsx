@@ -19,7 +19,7 @@ const ChatbotCss: React.FC = () => {
     setInput("");
 
     try {
-      const res = await fetch("http://localhost:5000/chat", {
+      const res = await fetch("https://backend-227780646387.europe-west1.run.app/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),
@@ -42,20 +42,26 @@ const ChatbotCss: React.FC = () => {
     <div className={styles.wrapper}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h3>Chatbot</h3>
+          <h3>Lakshmi's AI Assistant</h3>
         </div>
 
         <div className={styles.messages}>
-          {messages.length === 0 && <div className={styles.empty}>Ask anything about Lakshmi Girija Dhulipati(me) Loll programmed to give only good about me though</div>}
+          {messages.length === 0 && <div className={styles.empty}>Ask anything about Lakshmi Girija Dhulipati :)</div>}
           {messages.map((m, i) => (
             <div
               key={i}
               className={m.role === "user" ? styles.userMsg : styles.botMsg}
+              style={{fontSize: "18px"}}
+
             >
               <strong className={styles.role}>
                 {m.role === "user" ? "You:" : "Lakshmi's AI asst:"}
-              </strong>{" "}
-              {m.content}
+              </strong>
+              {m.role === "user" ? (
+                  <strong style={{ fontSize: "18px"}}>{m.content}</strong>
+                ) : (
+                  m.content
+                )}
             </div>
           ))}
         </div>
@@ -66,9 +72,8 @@ const ChatbotCss: React.FC = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             className={styles.input}
-            placeholder="Type a message..."
-          />
-          <button onClick={sendMessage} className={styles.button}>
+            placeholder="Type a message..."></input>
+            <button onClick={sendMessage} className={styles.button}>
             Send
           </button>
         </div>

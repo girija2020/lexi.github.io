@@ -1,74 +1,77 @@
-/* ChatbotCss.module.css */
+/* global: include padding in width calculations */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* container */
 .wrapper {
   margin: 24px auto;
-  max-width: 1200px; /* small width */
+  max-width: 1200px;
+  padding: 0 16px; /* small horizontal padding so inner fixed widths don't escape */
   font-size: 14px;
 }
 
+/* card */
 .card {
-  background: rgba(189, 85, 249, 0.95);
+  background: rgba(0,0,0,0.38);
   border-radius: 16px;
   padding: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-  border: 1px solid #e6e6e6;
-  position: unset;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden; /* keeps children from visually overflowing */
 }
 
-.header h3 {
-  margin: 0 0 8px 0;
-  font-size: 14px;
-}
+/* header */
+.header h3 { margin: 0 0 8px 0; font-size: 20px; }
 
+/* messages: responsive width, scroll only vertically, allow long text to wrap */
 .messages {
-  height: 400px; /* smaller height */
-  width: 1080px;
+  height: 400px;
+  width: 100%;          /* ← make it responsive */
+  max-width: 1080px;    /* optional cap */
   overflow-y: auto;
   border-radius: 8px;
   padding: 8px;
-  border: 1px solid #f0f0f0;
   margin-bottom: 10px;
-  background: #353535;
+  background: #cfeecf;
+  word-break: break-word;       /* break long words / URLs if needed */
+  overflow-wrap: anywhere;      /* newer property that helps long strings */
+  white-space: pre-wrap;        /* preserves newlines but wraps lines */
 }
 
-.empty {
-  color: #888;
-  font-size: 13px;
-}
+/* ensure text colors still apply */
+.empty { color: #000000; font-size: 18px; }
+.userMsg { color: #006840; margin-bottom: 8px; }
+.botMsg { color: #680681; margin-bottom: 8px; }
+.role { font-size: 18px; margin-right: 6px; }
 
-.userMsg {
-  color: #1e6fff;
-  margin-bottom: 8px;
-}
-
-.botMsg {
-  color: #fdfafa;
-  margin-bottom: 8px;
-}
-
-.role {
-  font-size: 12px;
-  margin-right: 6px;
-}
-
+/* input row: allow wrapping on small screens and let children shrink */
 .inputRow {
   display: flex;
   gap: 8px;
+  align-items: center;
+  flex-wrap: wrap; /* will allow the button to wrap under input on narrow screens */
 }
 
+/* input: allow shrinking inside flex container */
 .input {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0; /* critical — lets the input shrink instead of forcing overflow */
   padding: 8px 10px;
   border-radius: 8px;
-  border: 1px solid #ddd;
   font-size: 14px;
 }
 
+/* button: keep fixed size but allow it to wrap */
 .button {
   padding: 8px 12px;
   border-radius: 8px;
-  background: #1e6fff;
+  background: #006840;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 14px;
+  white-space: nowrap;
 }

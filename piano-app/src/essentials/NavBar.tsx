@@ -73,9 +73,12 @@ const Navbar = () => {
     if (key in keySounds) {
       const audio = new Audio(keySounds[key]);
 
-      // restart if already playing
       audio.currentTime = 0;
-      audio.play().catch(() => {});
+      audio.play().then(() => {}).catch(() => {});
+      setTimeout(() => {
+    audio.pause();
+    console.log("Audio paused at:", audio.currentTime, "seconds");
+    }, 1000);
     }
   };
     window.addEventListener("keydown", handleKeyDown);
@@ -92,24 +95,25 @@ const Navbar = () => {
         Chat
       </NavLink>
       <NavLink to="/recommend" end className="nav-link">
-        Wowzer
+        Recommend
       </NavLink>
       <NavLink to="/time" end className="nav-link">
-        TimeLine
+        Timeline
       </NavLink>
-      <NavLink to="/anime" className="nav-link">
-        Anime
+      <NavLink to="/game" className="nav-link">
+        Game
       </NavLink>
       <NavLink to="/contact" className="nav-link">
         Contact
       </NavLink>
       <button
           onClick={() => setSound((prev) => prev * -1)}
+          style={{borderRadius:"20px"}}
         >
           {sound === 1 ? (
-            <img src={soundLogo} alt="Sound on" width={20} height={20} />
+            <img src={soundLogo} alt="Sound on" width={20} height={20} style={{borderRadius:"20px"}}/>
           ) : (
-            <img src={muteLogo} alt="Sound off" width={20} height={20} />
+            <img src={muteLogo} alt="Sound off" width={20} height={20} style={{borderRadius:"20px"}}/>
           )}
         </button>
     </nav>

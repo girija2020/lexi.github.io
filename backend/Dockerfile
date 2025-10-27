@@ -1,24 +1,26 @@
-# Use a lightweight Node.js image
-FROM node:22-alpine
+FROM node:lts
 
-# Set the working directory inside the container
-WORKDIR /
+# Use a working directory (avoid root)
+WORKDIR /usr/src/app
 
-# Copy package files and install dependencies
-COPY package.json package-lock.json ./
-RUN npm install
+# Install deps first for layer caching
+COPY package*.json ./
+RUN npm ci
 
-# Copy the rest of the application source code
+# Install small runtime deps and dotenvx CLI
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+# Install dotenvx CLI (this installs the CLI globally)
+RUN curl -sfS https://dotenvx.sh/install.sh | sh
+
+# Copy app source (do NOT copy .env.keys or plaintext .env)
 COPY . .
 
-# Expose the port your backend listens on (e.g., 5000)
+# Expose port
 EXPOSE 5000
-EXPOSE 3000
 
-COPY start.sh /app/start.sh
-
-# Make the script executable
-RUN chmod +x /app/start.sh
-
-# Use the script to start the application
-CMD ["sh", "/app/start.sh"]
+# Run via dotenvx at runtime so the DOTENV_PRIVATE_KEY provided at runtime is used to decrypt env
+# If you didn't install dotenvx globally, use: npx @dotenvx/dotenvx run -- node server.js
+CMD ["sh", "-c", "dotenvx run -- node server.js"]

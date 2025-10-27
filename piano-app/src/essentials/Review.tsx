@@ -26,7 +26,7 @@ const Review: React.FC<Props> = ({ items, className = ''}) => {
           return (
             <li
               key={item.id ?? `${index}-${item.date}-${item.author}`}
-              className={`review-item`}
+              className={"review-list"}
             >
 
               <div className="review-content" tabIndex={0}>

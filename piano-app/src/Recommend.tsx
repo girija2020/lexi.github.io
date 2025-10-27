@@ -13,7 +13,7 @@ export default function Recommend() {
     let mounted = true;
     (async () => {
       try {
-        const res = await fetch("http://localhost:3000/review");
+        const res = await fetch("https://backend-227780646387.europe-west1.run.app/review");
         if (!res.status) throw new Error(`Failed to fetch: ${res.status}`);
         const data = (await res.json()).result as ReviewItem[];
         if (mounted && Array.isArray(data)) setReviews(data);
@@ -42,7 +42,7 @@ export default function Recommend() {
     };
     
     setReviews((prev) => [item, ...prev]);
-    const response = await fetch("http://localhost:3000/add", {
+    const response = await fetch("https://backend-227780646387.europe-west1.run.app/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -58,6 +58,7 @@ export default function Recommend() {
   return (
     <main>
       <div>
+        <br></br>
         <section>
           <ReviewForm onAdd={handleAdd} />
         </section>
@@ -106,28 +107,41 @@ function ReviewForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ backgroundColor: "grey", padding: "1rem", borderRadius: "5px" , width: "450px", margin: "0 auto"} }>
-      <br></br>
-      <br></br>
+    <form onSubmit={handleSubmit} style={{ background: "rgba(0,0,0,0.45)", borderRadius: "18px",
+      backdropFilter: "blur(12px)",
+      boxShadow: "0 8px 30px rgba(0,0,0,0.3)", padding: "1rem" , width: "450px", margin: "0 auto", backgroundBlendMode: "difference"} }>
+      
       <h2>Leave a recommendation</h2>
 
 
       <label>
-        <span>Your name :   </span>
-        <input value={author} onChange={(e) => setAuthor(e.target.value)} placeholder="Your name" />
+        <span >Your name :   </span>
+        <input style={{
+    display: "inline-block",
+    backgroundColor: "#cfeecf",
+    padding: "0.5rem 1rem",
+    borderRadius: "35px",
+  }} value={author} onChange={(e) => setAuthor(e.target.value) } placeholder="Your name" />
       </label>
       <br></br>
       <br></br>
 
       <label>
         <span>Rating   </span>
-        <div>
+        <div >
           {[1, 2, 3, 4, 5].map((n) => (
             <button
               key={n}
               type="button"
               className={rating && rating >= n ? 'on' : 'off'}
               onClick={() => setRating(n)}
+              style={{
+    display: "inline-block",
+    backgroundColor: "#000000ff",
+    padding: "0.5rem 1rem",
+    borderRadius: "35px"}}
+              
+              
             >
               ★
             </button>
@@ -137,11 +151,17 @@ function ReviewForm({
       <br></br>
 
       <label>
-        <span>Recommendation : </span>
+        <span >Recommendation : </span>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={4}
+          style={{
+    display: "inline-block",
+    backgroundColor: "#cfeecf",
+    padding: "0.5rem 1rem",
+    borderRadius: "35px",
+  }}
           placeholder="Write your recommendation..."
         />
       </label>
@@ -153,7 +173,10 @@ function ReviewForm({
       <br></br>
 
 
-      <button type="submit" className="btn-primary">
+      <button type="submit" className="btn-primary" style={{display: "inline-block",
+    backgroundColor: "#cfeecf",
+    padding: "0.5rem 1rem",
+    borderRadius: "35px",}}>
         Submit
       </button>
     </form>

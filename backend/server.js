@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import OpenAI from "openai";
 import dotenv from "dotenv";
+import { MongoClient } from "mongodb";
 import fs from "fs";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
 import { text } from "stream/consumers";
@@ -26,6 +27,12 @@ app.use(express.json());
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+
+
+const uri = process.env.MONGO_URI;
+const client = new MongoClient(uri);
+
 
 async function extractTextFromPdf(filePath) {
   const data = new Uint8Array(fs.readFileSync(filePath));
@@ -202,5 +209,54 @@ console.log(reply);
     res.status(500).json({ error: "Something went wrong" });
   }
 });
+
+
+app.post("/add", async (req, res) => {
+  try {
+    await client.connect();
+    const db = client.db("Recommendation");
+    const collection = db.collection("GoHigh");
+
+    const data = req.body;
+    const result = await collection.insertOne(data);
+
+    res.status(201).json({
+      success: true,
+      insertedId: result.insertedId,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  } finally {
+    await client.close();
+  }
+});
+
+app.get("/review", async (req, res) => {
+    try {
+        await client.connect();
+        const db = client.db("Recommendation");
+        const collection = db.collection("GoHigh");
+
+        const data = req.body;
+        const result = await collection.find().toArray();
+
+        res.status(200).json({
+        success: true,
+        result: result,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+        success: false,
+        message: error.message,
+        });
+    } finally {
+        await client.close();
+    }
+})
 
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));

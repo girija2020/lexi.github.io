@@ -73,7 +73,7 @@ const Contact: React.FC = () => {
 
           <div className="cta-row">
             <a className="btn" href={`mailto:${CONTACT_FIELDS[0].value}`}>
-              Email me
+              Personal Email
             </a>
             <a className="btn ghost" href={`mailto:${CONTACT_FIELDS[2].value}`}>
               University Email
